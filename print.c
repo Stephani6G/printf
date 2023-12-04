@@ -1,13 +1,15 @@
 #include "main.h"
+
 /**
 * _printf - function to print to standard output
-* @format: parameters whose type is to be checked and printed
-* Return: count of parameters printed
+* stdout
+* @format: params  to be checked and printed
+* Return: count of params printed
 */
 
 int _printf(const char *format, ...)
 {
-	int printed_chars;
+	int printed_char;
 	conver_t f_list[] = {
 		{"c", print_char},
 		{"s", print_string},
@@ -16,7 +18,7 @@ int _printf(const char *format, ...)
 		{"i", print_integer},
 		{"b", print_binary},
 		{"r", print_reversed},
-		{"R", rot13},
+		{"R", root},
 		{"u", unsigned_integer},
 		{"o", print_octal},
 		{"x", print_hex},
@@ -31,7 +33,8 @@ int _printf(const char *format, ...)
 
 	va_start(arg_list, format);
 
-	printed_chars = parser(format, f_list, arg_list);
+	printed_char = parser(format, f_list, arg_list);
 	va_end(arg_list);
-	return (printed_chars);
+
+	return (printed_char);
 }
