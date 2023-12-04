@@ -25,6 +25,7 @@ typedef struct format_operators
 int _putchar(char c);
 
 int _printf(const char *format, ...);
+void print_buffer(char buffer[], int *buff_ind);
 int (*check_func(char s))(va_list inputs);
 int print_c(va_list inputs);
 int print_s(va_list inputs);
