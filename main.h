@@ -1,43 +1,47 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
-#include <stdio.h>
 #include <unistd.h>
-
-#define F_ZERO 4
-#define F_HASH 8
-#define F_PLUS 2
-#define F_SPACE 16
-#define F_MINUS 1
-
-#define UNUSED(x) (void)(x)
-#define BUFF_SIZE 1024
-
-#define S_LONG 2
-#define S_SHORT 1
+#include <stdlib.h>
+#include <stdarg.h>
 
 /**
-* struct format_operators - function format checker object
-* @ch: character flag
-* @func: function to check
+* struct convert -  func defines a structure for symbols and functions
+*
+* @st: The operator
+* @fn: The function associated
 */
 
-typedef struct format_operators
+struct convert
 {
-	char *ch;
-	int (*func)(va_list);
-} f_ops;
+	char *st;
+	int (*fn)(va_list);
+};
+typedef struct convert conver_t;
 
-/* putchar*/
-int _putchar(char c);
+
+int parser(const char *format, conver_t f_list[], va_list arg_list);
 int _printf(const char *format, ...);
-int (*check_func(char s))(va_list inputs);
-int print_c(va_list inputs);
-int print_s(va_list inputs);
-int print_d(va_list inputs);
-int print_i(va_list inputs);
-int print_b(va_list inputs);
+int _putchar(char c);
+int print_char(va_list);
+int print_string(va_list);
+int print_percent(va_list);
+int print_integer(va_list);
+int print_number(va_list);
+int print_binary(va_list);
+int print_reversed(va_list arg);
+int rot13(va_list);
+int unsigned_integer(va_list);
+int print_octal(va_list list);
+int print_hex(va_list list);
+int print_heX(va_list list);
+
+unsigned int base_len(unsigned int, int);
+char *rev_string(char *);
+void write_base(char *str);
+char *_memcpy(char *dest, char *src, unsigned int n);
+int print_unsgined_number(unsigned int);
+
 
 
 #endif
