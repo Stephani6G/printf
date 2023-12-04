@@ -21,6 +21,9 @@ typedef struct format_operators
 } f_ops;
 
 
+void _puts(char *str);
+
+
 /*putchar function */
 int _putchar(char c);
 
@@ -32,5 +35,10 @@ int print_s(va_list inputs);
 int print_d(va_list inputs);
 int print_i(va_list inputs);
 int print_b(va_list inputs);
+int print_p(va_list ap);
+int printnumber(int n);
+
+int _strlen(const char *s);
+
 
 #endif /* MAIN_H */
