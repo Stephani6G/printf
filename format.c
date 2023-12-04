@@ -1,57 +1,49 @@
 #include "main.h"
-#include <stdlib.h>
-
-void print_buffer(char buffer[], int *buff_ind);
 
 /**
-* _printf - a function that produces
-*		output according to a format
-* @format: parameters of a character string
-*		whose format is to be checked and printed
-* Return: the number of characters printed
-*		excluding the null byte used
+* _printf - function to print to standard output
+* @format: params  to be checked and printed
+* Return: count of params that are printed
 */
 
 int _printf(const char *format, ...)
 {
-	int index, prd = 0, prd_char = 0;
-	int flag, width, precision, size, buff_ind = 0;
-	va_list list;
-	char buffer[BUFF_SIZE];
+	int nums = 0;
 
-	if (format == NULL)
-		return (-1);
-
-	va_start(list, format);
-
-	for (index = 0; format && format[index] != '\0'; index++)
+	if (format != NULL)
 	{
-		if (format[index] != '%')
+		int j;
+		va_list inputs;
+		int (*f)(va_list);
+
+		va_start(inputs, format);
+		if (format[0] == '%' && format[1] == '\0')
+			return (-1);
+
+		nums = 0;
+
+		while (format[j] != '\0')
 		{
-			buffer[buff_ind++] = format[index];
-			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &buff_ind);
-				prd_char++;
+			if (format[j] == '%')
+			{
+				if (format[j + 1] == '%')
+				{
+					nums += _putchar(format[j]);
+					j++;
+				}
+				else if (format[j + 1] != '\0')
+				{
+					f = check_func(format[j + 1]);
+					nums += (f ? f(inputs) :  _putchar(format[j]) + _putchar(format[j + 1]));
+					j++;
+				}
+			}
+			else
+				nums += _putchar(format[j]);
+			j++;
 		}
-		else
-		{
-			print_buffer(buffer, &buff_ind);
-			flag = get_flag(format, &index);
-			width = get_width(format, &index, list);
-			precision = get_precision(format, &index, list);
-			size = get_size(format, &index);
-			++index;
-			prd = handle_print(format, &index, list, buffer,
-				flags, width, precision, size);
-			if (prd == -1)
-				return (-1);
-			prd_char += prd;
-		}
+		va_end(inputs);
 	}
 
-	print_buffer(buffer, &buff_ind);
-
-	va_end(list);
-
-	return (prd_char);
+		return (nums);
 }
