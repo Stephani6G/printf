@@ -17,12 +17,12 @@ int _printf(const char *format, ...)
 		{"d", print_integer},
 		{"i", print_integer},
 		{"b", print_binary},
-		{"r", print_reversed},
+		{"r", print_reverse},
 		{"R", root},
 		{"u", unsigned_integer},
 		{"o", print_octal},
 		{"x", print_hex},
-		{"X", print_heX},
+		{"X", print_HeX},
 		{NULL, NULL}
 	};
 

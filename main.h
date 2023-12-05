@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
@@ -11,7 +12,7 @@
 /**
 * struct convert -  func defines a structure for symbols and functions
 *
-* @st: The operator
+* @st: The operator for the function
 * @fn: The function associated
 */
 
