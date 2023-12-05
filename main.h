@@ -27,17 +27,19 @@ int parser(const char *format, conver_t f_list[], va_list arg_list);
 int _printf(const char *format, ...);
 int _putchar(char c);
 int print_char(va_list);
+int print_octal(va_list list);
 int print_string(va_list);
+int print_number(va_list);
 int print_percent(va_list);
 int print_integer(va_list);
-int print_number(va_list);
-int print_binary(va_list);
-int print_reversed(va_list arg);
 int root(va_list);
-int unsigned_integer(va_list);
-int print_octal(va_list list);
-int print_hex(va_list list);
+
+int print_binary(va_list);
+int print_reverse(va_list arg);
 int print_heX(va_list list);
+int unsigned_integer(va_list);
+
+int print_hex(va_list list);
 
 unsigned int base_len(unsigned int, int);
 char *rev_string(char *);
